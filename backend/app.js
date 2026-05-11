@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import router from "./product/productRouter.js";
 const app = express();
-
+import db from "./db.js";
 app.use(express.json());
 
 app.use("/api", router);

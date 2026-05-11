@@ -1,24 +1,37 @@
-export const getProduct = (req, res) => {
+import Products from "./productSchema.js";
+
+export const getProduct = async (req, res) => {
   try {
-    res.send("<h1>Get Products</h1>");
+    const products = await Products.find({});
+    res.status(201).json({
+      msg: "data fetched successfully",
+      data: products,
+    });
   } catch (error) {
-    console.log(`This is Error ${err}`);
+    res.status(500).json({
+      msg: "got error",
+      error: error.message,
+    });
   }
 };
 
-export const CreatProduct = (req, res) => {
+export const CreatProduct = async (req, res) => {
   try {
-    const { name, age } = req.body;
+    const { name, Price, category } = req.body;
+    const newProducts = await Products.create({
+      name,
+      Price,
+      category: category,
+    });
 
-    res.send(`<h1> Name:${name}</h1>
-        
-        <h1> Age: ${age}</h1>
-        `);
-  } catch (error) {}
-};
-
-export const getQuery = (req, res) => {
-  try {
-    res.json(req.params);
-  } catch (error) {}
+    res.status(201).json({
+      msg: "Product created successfully",
+      data: newProducts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: "got error",
+      error: error.message,
+    });
+  }
 };
