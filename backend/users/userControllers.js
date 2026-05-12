@@ -8,6 +8,7 @@ export const createUsers = (req, res) => {
       res.status(400).json({
         msg: "email required",
       });
+    
 
       const payload = {
         name,
