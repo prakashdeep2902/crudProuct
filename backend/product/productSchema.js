@@ -8,17 +8,15 @@ const productSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-    email:{
-
-      type:String,
-      validate:{
-        validator:function(value){
-
-          return value.includes("@")
+    email: {
+      type: String,
+      validate: {
+        validator: function (value) {
+          return value.includes("@");
         },
-         message: "Invalid email format"
-      }
-    }
+        message: "Invalid email format",
+      },
+    },
     Price: {
       type: Number,
       required: true,
