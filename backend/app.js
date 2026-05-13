@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-import router from "./product/productRouter.js";
+import router from "./src/index.js";
 const app = express();
 import db from "./db.js";
 app.use(express.json());

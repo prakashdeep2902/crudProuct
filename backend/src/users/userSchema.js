@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 
-const UserSchema = new mongosse.schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     maxLength: 18,
@@ -10,7 +10,7 @@ const UserSchema = new mongosse.schema({
     type: String,
     validate: {
       validator: function (value) {
-        return value.include("@");
+        return value.includes("@");
       },
       message: "Invalid email format",
     },
@@ -26,4 +26,4 @@ const UserSchema = new mongosse.schema({
 
 const User = mongoose.model("Users", UserSchema);
 
-export default user;
+export default User;
