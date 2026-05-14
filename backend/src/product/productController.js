@@ -2,7 +2,6 @@ import Products from "./productSchema.js";
 
 export const getProduct = async (req, res) => {
   try {
-    console.log("req:::===>", req.user);
     const products = await Products.find({});
     res.status(201).json({
       msg: "data fetched successfully",

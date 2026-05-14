@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "./userSchema.js";
+import bcrypt from "bcrypt";
 
 export const createUsers = async (req, res) => {
   try {
@@ -18,12 +19,14 @@ export const createUsers = async (req, res) => {
       });
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // JWT Payload
     const payload = {
       name,
       email,
       role,
-      password,
+      password: hashedPassword,
     };
 
     const user = await User.create(payload);
@@ -50,15 +53,19 @@ export const loginUsers = async (req, res) => {
     }
     const user = await User.findOne({
       email,
-      password,
     });
-    if (!user) {
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
       return res.status(404).json({
         msg: "User Not Found",
       });
     }
 
     const payload = {
+      id: user?._id,
+      name: user?.name,
       email,
     };
 
