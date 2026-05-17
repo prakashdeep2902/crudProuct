@@ -11,6 +11,7 @@ import CartPage from "./component/cart/CartPage";
 import { CartProvider } from "./context/CartContext";
 import SingleProduct from "./component/singleproduct/SingleProduct";
 import SallerUser from "./component/Users/SellerUser";
+import  Register  from "./component/saller/register/Register";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="product/:id" element={<SingleProduct />} />
               <Route path="category/:cateName" element={<Product />} />
                <Route path="/create/seller/user" element={<SallerUser />} />
+               <Route path="/seller/register" element={<Register/>}></Route>
             </Routes>
           </BrowserRouter>
         </ThemeContextProvider>
