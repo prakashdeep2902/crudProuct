@@ -6,7 +6,6 @@ export const createUsers = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    // Validation
     if (!email) {
       return res.status(400).json({
         msg: "Email required",
@@ -21,25 +20,23 @@ export const createUsers = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // JWT Payload
     const payload = {
       name,
       email,
-      role,
       password: hashedPassword,
+      role,
     };
-
-    console.log(payload);
 
     const user = await User.create(payload);
 
     res.status(200).json({
+      status: 200,
       message: "User created successfully",
-      user,
     });
   } catch (error) {
     res.status(500).json({
       msg: "Server error",
+      error: error.message,
     });
   }
 };
