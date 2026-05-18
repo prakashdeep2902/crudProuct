@@ -79,12 +79,12 @@ const Header = () => {
             <IoPersonOutline />
             <span>Account</span>
 
-             <div className="accountDropDown">
+             {/* <div className="accountDropDown">
                 <ul>
                   <li>User Login</li>
                   <li>Seller Login</li>
                 </ul>
-             </div>
+             </div> */}
 
           </div>
 

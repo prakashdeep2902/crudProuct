@@ -10,8 +10,10 @@ import ApiProvider from "./context/APiContext";
 import CartPage from "./component/cart/CartPage";
 import { CartProvider } from "./context/CartContext";
 import SingleProduct from "./component/singleproduct/SingleProduct";
-import  Register  from "./component/saller/register/Register";
+import Register  from "./component/saller/register/Register";
 import Login from "./component/saller/Login/Login";
+import UserRegister from "./component/users/register/Register"
+import UserLogin from "./component/users/login/Login"
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
               <Route path="category/:cateName" element={<Product />} />
               <Route path="/seller/register" element={<Register/>}></Route>
               <Route path="/seller/login" element={<Login/>}></Route>
+              <Route path="/user/register" element={<UserRegister/>}></Route>
+              <Route path="/user/login" element={<UserLogin/>}></Route>
             </Routes>
           </BrowserRouter>
         </ThemeContextProvider>

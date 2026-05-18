@@ -29,6 +29,8 @@ export const createUsers = async (req, res) => {
       password: hashedPassword,
     };
 
+    console.log(payload);
+
     const user = await User.create(payload);
 
     res.status(200).json({
@@ -55,6 +57,12 @@ export const loginUsers = async (req, res) => {
       email,
     });
 
+    if (!user) {
+      return res.status(400).json({
+        msg: "user not found",
+      });
+    }
+
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -74,6 +82,7 @@ export const loginUsers = async (req, res) => {
     });
 
     return res.status(201).json({
+      status: 200,
       msg: "login successfully",
       token,
     });
