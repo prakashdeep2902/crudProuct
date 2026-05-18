@@ -10,8 +10,8 @@ import ApiProvider from "./context/APiContext";
 import CartPage from "./component/cart/CartPage";
 import { CartProvider } from "./context/CartContext";
 import SingleProduct from "./component/singleproduct/SingleProduct";
-import SallerUser from "./component/Users/SellerUser";
 import  Register  from "./component/saller/register/Register";
+import Login from "./component/saller/Login/Login";
 
 const App = () => {
   return (
@@ -28,8 +28,8 @@ const App = () => {
               <Route path="/cart" element={<CartPage />} />
               <Route path="product/:id" element={<SingleProduct />} />
               <Route path="category/:cateName" element={<Product />} />
-               <Route path="/create/seller/user" element={<SallerUser />} />
-               <Route path="/seller/register" element={<Register/>}></Route>
+              <Route path="/seller/register" element={<Register/>}></Route>
+              <Route path="/seller/login" element={<Login/>}></Route>
             </Routes>
           </BrowserRouter>
         </ThemeContextProvider>

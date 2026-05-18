@@ -75,9 +75,17 @@ const Header = () => {
         </div>
 
         <div className="header-icons">
-          <div className="icon-box">
+          <div className="icon-box">  
             <IoPersonOutline />
             <span>Account</span>
+
+             <div className="accountDropDown">
+                <ul>
+                  <li>User Login</li>
+                  <li>Seller Login</li>
+                </ul>
+             </div>
+
           </div>
 
           <div className="icon-box" onClick={() => navgiation("/cart")}>
