@@ -1,44 +1,14 @@
-import Product from "./component/Products/Product";
-import Header from "./component/Header/Header";
-import ThemeContextProvider from "./context/ThemContext";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./component/Home/Home";
-import About from "./component/About/About";
-import Contact from "./component/Contact/Contact";
-import { Apifetch } from "./helper/Apifetch";
-import ApiProvider from "./context/APiContext";
-import CartPage from "./component/cart/CartPage";
-import { CartProvider } from "./context/CartContext";
-import SingleProduct from "./component/singleproduct/SingleProduct";
-import Register  from "./component/saller/register/Register";
-import Login from "./component/saller/Login/Login";
-import UserRegister from "./component/users/register/Register"
-import UserLogin from "./component/users/login/Login"
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./pages/auth/Register";
 
 const App = () => {
   return (
-    <CartProvider>
-      <ApiProvider>
-        <ThemeContextProvider>
-          <BrowserRouter>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="product/:id" element={<SingleProduct />} />
-              <Route path="category/:cateName" element={<Product />} />
-              <Route path="/seller/register" element={<Register/>}></Route>
-              <Route path="/seller/login" element={<Login/>}></Route>
-              <Route path="/user/register" element={<UserRegister/>}></Route>
-              <Route path="/user/login" element={<UserLogin/>}></Route>
-            </Routes>
-          </BrowserRouter>
-        </ThemeContextProvider>
-      </ApiProvider>
-    </CartProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
