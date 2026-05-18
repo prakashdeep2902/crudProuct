@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
@@ -6,53 +7,83 @@ import Button from "../../components/auth/Button";
 import SocialLogin from "../../components/auth/SocialLogin";
 import AuthFooter from "../../components/auth/AuthFooter";
 
-import {
-  FiMail,
-  FiLock,
-} from "react-icons/fi";
+import { FiMail, FiLock } from "react-icons/fi";
+
+import { loginUser } from "../../services/authService";
+import { useToast } from "../../context/ToastContext";
 
 const Login = () => {
+      const { showMessage } = useToast();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const data = await loginUser(formData);
+      if (data.status == 200) {
+        showMessage("login Successful", "success");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      showMessage("something  wrong", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AuthLayout>
-
       <div className="w-full max-w-xl">
-
-        {/* Heading */}
         <div>
-
-          <h1 className="text-6xl font-bold text-gray-900">
-            Welcome Back 👋
-          </h1>
+          <h1 className="text-6xl font-bold text-gray-900">Welcome Back 👋</h1>
 
           <p className="text-gray-500 text-2xl mt-5">
             Login to continue to your account
           </p>
         </div>
 
-        {/* Form */}
-        <form className="mt-14 space-y-8">
-
+        <form onSubmit={handleSubmit} className="mt-14 space-y-8">
           <InputField
             type="email"
             placeholder="Enter your email"
             icon={<FiMail />}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
 
           <InputField
             type="password"
             placeholder="Enter your password"
             icon={<FiLock />}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
 
-          {/* Options */}
           <div className="flex items-center justify-between text-lg">
-
             <div className="flex items-center">
               <input type="checkbox" />
 
-              <span className="ml-3 text-gray-600">
-                Remember me
-              </span>
+              <span className="ml-3 text-gray-600">Remember me</span>
             </div>
 
             <span className="text-orange-500 cursor-pointer">
@@ -60,15 +91,12 @@ const Login = () => {
             </span>
           </div>
 
-          <Button title="Login" />
+          <Button title={loading ? "Loading..." : "Login"} />
         </form>
 
         <SocialLogin />
 
-        <AuthFooter
-          text="Don't have an account?"
-          linkText="Sign up"
-        />
+        <AuthFooter text="Don't have an account?" linkText="Sign up" />
       </div>
     </AuthLayout>
   );

@@ -3,19 +3,27 @@ import React from "react";
 const InputField = ({
   type,
   placeholder,
+  icon,
+  name,
   value,
   onChange,
-  name,
 }) => {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      name={name}
-      className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-orange-500"
-    />
+    <div className="border border-gray-300 rounded-2xl flex items-center px-5 h-[60px]">
+
+      <span className="text-2xl text-gray-400">
+        {icon}
+      </span>
+
+      <input
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full ml-4 outline-none text-lg bg-transparent"
+      />
+    </div>
   );
 };
 

@@ -3,8 +3,10 @@ import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
 import Button from "../../components/auth/Button";
 import { registerUser } from "../../services/authService";
-
 import useToast from "../../hooks/useToast";
+import { useNavigate } from "react-router-dom";
+
+
 const Register = () => {
   const { showMessage } = useToast();
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -39,9 +42,8 @@ const Register = () => {
           password: "",
         });
 
-          showMessage("Registration Successful", "success");
+        showMessage("Registration Successful", "success");
       }
-    
     } catch (error) {
       console.log(error);
       showMessage("Something went wrong", "error");
@@ -85,7 +87,14 @@ const Register = () => {
 
         <p className="text-center mt-6 text-gray-500">
           Already have an account?
-          <span className="text-orange-500 cursor-pointer ml-2">Login</span>
+          <span
+            className="text-orange-500 cursor-pointer ml-2"
+            onClick={() => {
+              navigate("/user/login");
+            }}
+          >
+            Login
+          </span>
         </p>
       </div>
     </AuthLayout>

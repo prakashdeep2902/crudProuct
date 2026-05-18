@@ -44,7 +44,6 @@ export const createUsers = async (req, res) => {
 export const loginUsers = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res.status(400).json({
         msg: "Email and password required",
@@ -80,7 +79,7 @@ export const loginUsers = async (req, res) => {
 
     return res.status(201).json({
       status: 200,
-      msg: "login successfully",
+      user: payload,
       token,
     });
   } catch (error) {
