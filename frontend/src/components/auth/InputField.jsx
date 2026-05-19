@@ -14,7 +14,6 @@ const InputField = ({
       <span className="text-2xl text-gray-400">
         {icon}
       </span>
-
       <input
         type={type}
         placeholder={placeholder}

@@ -34,7 +34,6 @@ const Register = () => {
 
     try {
       const data = await registerUser(newData);
-
       if (data.status == 200) {
         setFormData({
           name: "",
