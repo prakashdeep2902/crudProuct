@@ -3,12 +3,10 @@ import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
 import Button from "../../components/auth/Button";
 import { registerUser } from "../../services/authService";
-import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
-  const { showMessage } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

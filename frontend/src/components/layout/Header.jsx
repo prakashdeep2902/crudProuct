@@ -1,7 +1,9 @@
 import React from "react";
 import { FiHeart, FiShoppingCart, FiUser, FiSearch } from "react-icons/fi";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const userInfo = useSelector((state) => state.auth.user);
   return (
     <header className="w-full bg-white shadow-sm ">
       <div className="max-w-8xl mx-auto px-6 h-24 flex items-center justify-between">
@@ -45,7 +47,7 @@ const Header = () => {
             <FiUser className="text-2xl" />
 
             <div className="leading-5">
-              <p className="text-sm text-gray-500">Hi, John</p>
+              <p className="text-sm text-gray-500">Hi, {userInfo ? userInfo.name:"unknow"}</p>
 
               <p className="font-medium">My Account</p>
             </div>

@@ -7,13 +7,12 @@ import SocialLogin from "../../components/auth/SocialLogin";
 import AuthFooter from "../../components/auth/AuthFooter";
 import { FiMail, FiLock } from "react-icons/fi";
 import { loginUser } from "../../services/authService";
-import { useToast } from "../../context/ToastContext";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/authSlice";
 
 const Login = () => {
-
-
-  const { showMessage } = useToast();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -34,14 +33,16 @@ const Login = () => {
       setLoading(true);
       const data = await loginUser(formData);
       if (data.status == 200) {
-        showMessage("login Successful", "success");
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch(
+          loginSuccess({
+            token: data.token,
+            user: data.user,
+          }),
+        );
       }
       navigate("/");
     } catch (error) {
       console.log(error);
-      showMessage("something  wrong", "error");
     } finally {
       setLoading(false);
     }
