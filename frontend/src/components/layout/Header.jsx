@@ -6,8 +6,7 @@ const Header = () => {
   const userInfo = useSelector((state) => state.auth.user);
   return (
     <header className="w-full bg-white shadow-sm ">
-      <div className="max-w-8xl mx-auto px-6 h-24 flex items-center justify-between">
-        {/* LOGO */}
+      <div className="max-w-[95%] mx-auto px-6 h-24 flex items-center justify-between ">
         <div className="flex items-center gap-3 cursor-pointer">
           <div className="w-10 h-10 border-2 border-orange-500 rounded-md"></div>
 
@@ -17,7 +16,6 @@ const Header = () => {
         </div>
 
         <div className="flex items-center w-137.5 border border-gray-300 rounded-xl overflow-hidden">
-          {/* Categories */}
           <select className="h-14 px-4 bg-gray-50 border-r border-gray-300 outline-none text-gray-600">
             <option>All Categories</option>
             <option>Electronics</option>
