@@ -14,7 +14,7 @@ const Header = () => {
           </h1>
         </div>
 
-        <div className="flex items-center w-[550px] border border-gray-300 rounded-xl overflow-hidden">
+        <div className="flex items-center w-137.5 border border-gray-300 rounded-xl overflow-hidden">
           {/* Categories */}
           <select className="h-14 px-4 bg-gray-50 border-r border-gray-300 outline-none text-gray-600">
             <option>All Categories</option>

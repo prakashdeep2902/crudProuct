@@ -21,7 +21,7 @@ const AuthLayout = ({ children }) => {
           {/* Content */}
           <div>
 
-            <h1 className="text-7xl font-bold leading-[90px] text-gray-900">
+            <h1 className="text-7xl font-bold leading-22.5 text-gray-900">
               Shop Smarter,
               <br />
               Live{" "}
