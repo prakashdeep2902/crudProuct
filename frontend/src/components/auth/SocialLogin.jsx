@@ -23,17 +23,17 @@ const SocialLogin = () => {
       {/* Buttons */}
       <div className="grid grid-cols-1 gap-5">
 
-        <button className="border rounded-2xl h-[50px] flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
+        <button className="border rounded-2xl h-12.5 flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
           <FaGoogle />
           Continue with Google
         </button>
 
-        <button className="border rounded-2xl h-[50px] flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
+        <button className="border rounded-2xl h-12.5 flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
           <FaFacebookF />
           Continue with Facebook
         </button>
 
-        <button className="border rounded-2xl h-[50px] flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
+        <button className="border rounded-2xl h-12.5 flex items-center justify-center gap-3 text-xl font-medium hover:bg-gray-50">
           <FaApple />
           Continue with Apple
         </button>

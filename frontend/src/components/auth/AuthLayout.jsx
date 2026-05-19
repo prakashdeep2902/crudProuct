@@ -40,7 +40,7 @@ const AuthLayout = ({ children }) => {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
                 alt="shopping"
-                className="w-[420px]"
+                className="w-105"
               />
             </div>
           </div>

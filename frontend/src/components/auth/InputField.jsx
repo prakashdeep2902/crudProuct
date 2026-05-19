@@ -9,7 +9,7 @@ const InputField = ({
   onChange,
 }) => {
   return (
-    <div className="border border-gray-300 rounded-2xl flex items-center px-5 h-[60px]">
+    <div className="border border-gray-300 rounded-2xl flex items-center px-5 h-15">
 
       <span className="text-2xl text-gray-400">
         {icon}
