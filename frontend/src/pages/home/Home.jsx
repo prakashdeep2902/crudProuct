@@ -5,11 +5,7 @@ const Home = () => {
   return (
     <>
       <Header />
-
-      <div>
-
-        <h1>hello Home</h1>
-      </div>
+      <h1>hello Home</h1>
     </>
   );
 };

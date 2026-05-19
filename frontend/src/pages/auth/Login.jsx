@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
 import Button from "../../components/auth/Button";
 import SocialLogin from "../../components/auth/SocialLogin";
 import AuthFooter from "../../components/auth/AuthFooter";
-
 import { FiMail, FiLock } from "react-icons/fi";
-
 import { loginUser } from "../../services/authService";
 import { useToast } from "../../context/ToastContext";
 
 const Login = () => {
-      const { showMessage } = useToast();
+
+
+  const { showMessage } = useToast();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -22,7 +21,6 @@ const Login = () => {
   });
 
   const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -54,7 +52,6 @@ const Login = () => {
       <div className="w-full max-w-xl">
         <div>
           <h1 className="text-6xl font-bold text-gray-900">Welcome Back 👋</h1>
-
           <p className="text-gray-500 text-2xl mt-5">
             Login to continue to your account
           </p>
