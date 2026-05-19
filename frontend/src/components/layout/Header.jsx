@@ -1,11 +1,10 @@
 import React from "react";
-
 import { FiHeart, FiShoppingCart, FiUser, FiSearch } from "react-icons/fi";
 
 const Header = () => {
   return (
     <header className="w-full bg-white shadow-sm ">
-      <div className="max-w-8xl mx-auto px-6 h-24 flex items-center justify-between border-2 border-blue-500">
+      <div className="max-w-8xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* LOGO */}
         <div className="flex items-center gap-3 cursor-pointer">
           <div className="w-10 h-10 border-2 border-orange-500 rounded-md"></div>
