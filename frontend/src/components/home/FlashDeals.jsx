@@ -106,7 +106,7 @@ const FlashDeals = () => {
             </div>
 
             {/* Product Title */}
-            <h3 className="text-sm font-medium text-gray-800 line-clamp-2 min-h-[40px]">
+            <h3 className="text-sm font-medium text-gray-800 line-clamp-2 min-h-10">
               {item.title}
             </h3>
 
