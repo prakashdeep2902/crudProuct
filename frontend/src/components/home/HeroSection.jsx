@@ -4,7 +4,7 @@ import CategorySidebar from "./CategorySidebar";
 
 const HeroSection = () => {
   return (
-    <section className=" mx-auto px-6">
+    <section className="mx-auto px-6">
       <div className="flex gap-6">
         <CategorySidebar />
         <div className="flex-1 bg-[#ffe9dc] rounded-3xl overflow-hidden h-125 flex items-center justify-between px-16">
@@ -24,7 +24,7 @@ const HeroSection = () => {
             </p>
 
             {/* Button */}
-            <button className="mt-10 bg-orange-500 hover:bg-orange-600 transition-all text-white px-10 h-16 rounded-2xl text-xl font-semibold">
+            <button className="mt-10 bg-orange-500 hover:bg-orange-600 transition-all text-white px-10 h-16 rounded-2xl text-xl font-semibold cursor-pointer">
               Shop Now
             </button>
           </div>
