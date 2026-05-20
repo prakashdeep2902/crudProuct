@@ -21,8 +21,7 @@ const SellerRegisterForm = () => {
 
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        type === "checkbox" ? checked : value,
+      [name]:type === "checkbox" ? checked : value,
     }));
   };
 
