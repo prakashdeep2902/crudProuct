@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="w-full bg-white border-t mt-10">
       
       {/* Top Section */}
-      <div className="max-w-[1400px] mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-350 mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         
         {/* Logo & About */}
         <div>
@@ -21,7 +21,7 @@ const Footer = () => {
             <span className="text-orange-500">Kart</span>
           </h2>
 
-          <p className="text-sm text-gray-500 mt-4 leading-6 max-w-[250px]">
+          <p className="text-sm text-gray-500 mt-4 leading-6 max-w-62.5">
             Your one-stop destination for shopping the best
             products online at unbeatable prices.
           </p>
@@ -126,7 +126,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="border-t">
-        <div className="max-w-[1400px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-350 mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
           
           <p className="text-sm text-gray-500">
             © 2024 ShopKart. All rights reserved.

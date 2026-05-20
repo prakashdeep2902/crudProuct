@@ -10,8 +10,6 @@ import Footer from "../../components/layout/Footer";
 const Home = () => {
   return (
     <>
-     
-  
      <Header />
       <div className="min-h-screen max-w-[95%] mt-6 mx-auto ">
         <HeroSection />
