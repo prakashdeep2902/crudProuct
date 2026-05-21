@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { registerSellerUser } from "../../services/authService";
+import { useDispatch } from "react-redux";
+import { showMsg } from "../../redux/msgSlice";
 
 const SellerRegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -29,10 +32,30 @@ const SellerRegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      return console.error("password and confirm-password is not same");
+    if (formData.phonenumber.length > 10 || formData.phonenumber.length > 10) {
+      return dispatch(
+        showMsg({
+          message: "phone number must be length of 10",
+          type: "error",
+        }),
+      );
     }
-
+    if (formData.password.length <= 6) {
+      return dispatch(
+        showMsg({
+          message: "password length should not less then 6",
+          type: "error",
+        }),
+      );
+    }
+    if (formData.password !== formData.confirmPassword) {
+      return dispatch(
+        showMsg({
+          message: "password and confirmPassword are not same",
+          type: "error",
+        }),
+      );
+    }
 
     try {
       const data = await registerSellerUser(formData);
@@ -46,6 +69,13 @@ const SellerRegisterForm = () => {
           confirmPassword: "",
           termsAccepted: false,
         });
+
+        dispatch(
+          showMsg({
+            message: "Seller Login successfully",
+            type: "success",
+          }),
+        );
       }
     } catch (error) {
       console.error(error);
