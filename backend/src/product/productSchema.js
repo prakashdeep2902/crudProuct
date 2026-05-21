@@ -2,28 +2,40 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    name: {
+    productname: {
       type: String,
       required: true,
       lowercase: true,
       trim: true,
     },
-    email: {
-      type: String,
-      validate: {
-        validator: function (value) {
-          return value.includes("@");
-        },
-        message: "Invalid email format",
-      },
-    },
-    Price: {
-      type: Number,
-      required: true,
-    },
     category: {
       type: String,
       required: true,
+      lowercase: true,
+    },
+    brand: {
+      type: String,
+    },
+    ProductImages: [String],
+    description: {
+      type: String,
+    },
+    price: {
+      type: String,
+    },
+    sku: {
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: ["Active", "Out of Stock", "Draft"],
+    },
+    stock: {
+      type: String,
+    },
+
+    producttag: {
+      type: String,
     },
   },
   {

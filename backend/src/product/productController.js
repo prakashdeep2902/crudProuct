@@ -17,15 +17,9 @@ export const getProduct = async (req, res) => {
 
 export const CreatProduct = async (req, res) => {
   try {
-    const { name, Price, category } = req.body;
-    const newProducts = await Products.create({
-      name,
-      Price,
-      category: category,
-    });
-
+    const newProducts = await Products.create(req.body);
     res.status(201).json({
-      msg: "Product created successfully",
+      status: 200,
       data: newProducts,
     });
   } catch (error) {

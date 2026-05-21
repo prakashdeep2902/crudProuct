@@ -8,7 +8,7 @@ import Seller from "./sellerusers/index.js";
 const app = express();
 
 app.use("/user", users);
-app.use("/product", Auth, Products);
+app.use("/product", Products);
 app.use("/seller", Seller);
 
 export default app;

@@ -1,38 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductInformation from "./ProductInformation";
 import ProductImageUpload from "./ProductImageUpload";
 import ProductDescription from "./ProductDescription";
 import ProductStatus from "./ProductStatus";
 import ProductActions from "./ProductActions";
+import { productCreate } from "../../../services/authService";
+import { useDispatch } from "react-redux";
+import { showMsg } from "../../../redux/msgSlice";
 
 const ProductForm = () => {
+  const dispatch = useDispatch();
+  const [productData, setProductData] = useState({
+    productname: "",
+    category: "",
+    saleprice: "",
+    sku: "",
+    stock: "",
+    brand: "",
+    price: "",
+    description: "",
+    producttag: "",
+    status: "",
+  });
+
+  const handelChange = (e) => {
+    const { value, name } = e.target;
+
+    setProductData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handelProductSave = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await productCreate(productData);
+      if (res.status == 200) {
+        setProductData({
+          productname: "",
+          category: "",
+          saleprice: "",
+          sku: "",
+          stock: "",
+          brand: "",
+          price: "",
+          description: "",
+          producttag: "",
+          status: "",
+        });
+        dispatch(
+          showMsg({
+            message: "Product created successfully",
+            type: "success",
+          }),
+        );
+      }
+    } catch (error) {
+      dispatch(
+        showMsg({
+          message: error,
+          type: "error",
+        }),
+      );
+    }
+  };
   return (
     <div>
-
       <div className="grid grid-cols-12 gap-6">
-
-        {/* Left Side */}
         <div className="col-span-8 space-y-6">
-
-          <ProductInformation />
-
-          <ProductDescription />
-
+          <ProductInformation
+            handelChange={handelChange}
+            productData={productData}
+          />
+          <ProductDescription
+            handelChange={handelChange}
+            Value={productData.description}
+          />
         </div>
 
-        {/* Right Side */}
         <div className="col-span-4 space-y-6">
-
           <ProductImageUpload />
-
-          <ProductStatus />
-
+          <ProductStatus
+            handelChange={handelChange}
+            Value={productData.status}
+          />
         </div>
-
       </div>
 
-      <ProductActions />
-
+      <ProductActions handelProductSave={handelProductSave} />
     </div>
   );
 };

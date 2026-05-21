@@ -20,3 +20,8 @@ export const loginSellerUser = async (data) => {
   const response = await axios.post(`${API}/seller/login`, data);
   return response.data;
 };
+
+export const productCreate = async (data) => {
+  const response = await axios.post(`${API}/product/create`, data);
+  return response.data;
+};
