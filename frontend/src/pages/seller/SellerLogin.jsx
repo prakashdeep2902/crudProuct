@@ -5,6 +5,8 @@ import InputField from "../../components/auth/InputField";
 import Button from "../../components/auth/Button";
 import { loginSellerUser } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showMsg } from "../../redux/msgSlice";
 const SellerLogin = () => {
   const [formData, setFromData] = useState({
     email: "",
@@ -12,6 +14,7 @@ const SellerLogin = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handelOnchange = (e) => {
     try {
@@ -28,8 +31,16 @@ const SellerLogin = () => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginSellerUser(formData);
+      if (!formData.email && !formData.password) {
+        return dispatch(
+          showMsg({
+            message: "email and password required",
+            type: "error",
+          }),
+        );
+      }
 
+      const response = await loginSellerUser(formData);
       if (response.status == 200) {
         setFromData({
           email: "",

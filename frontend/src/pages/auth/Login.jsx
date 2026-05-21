@@ -9,6 +9,7 @@ import { FiMail, FiLock } from "react-icons/fi";
 import { loginUser } from "../../services/authService";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/authSlice";
+import { showMsg } from "../../redux/msgSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,6 +30,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      return dispatch(
+        showMsg({
+          message: "email and password required",
+          type: "error",
+        }),
+      );
+    }
+
     try {
       setLoading(true);
       const data = await loginUser(formData);

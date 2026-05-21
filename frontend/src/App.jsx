@@ -8,6 +8,9 @@ import SellerLogin from "./pages/seller/SellerLogin";
 import Product from "./pages/seller/Product";
 import Dashboard from "./pages/seller/Dashboard";
 import Msg from "./components/common/Msg";
+import Order from "./pages/seller/Order";
+import Customer from "./pages/seller/Customer";
+import Setting from "./pages/seller/Setting";
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
           <Route path="/seller/login" element={<SellerLogin />} />
           <Route path="/seller/product" element={<Product />} />
           <Route path="/seller/dashboard" element={<Dashboard />}></Route>
+          <Route path="/seller/order" element={<Order />}></Route>
+          <Route path="/seller/customer" element={<Customer />}></Route>
+          <Route path="/seller/setting" element={<Setting />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

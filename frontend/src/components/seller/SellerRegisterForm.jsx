@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { registerSellerUser } from "../../services/authService";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ const SellerRegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -72,10 +73,12 @@ const SellerRegisterForm = () => {
 
         dispatch(
           showMsg({
-            message: "Seller Login successfully",
+            message: "Seller created successfully",
             type: "success",
           }),
         );
+
+        navigate("/seller/login");
       }
     } catch (error) {
       console.error(error);
