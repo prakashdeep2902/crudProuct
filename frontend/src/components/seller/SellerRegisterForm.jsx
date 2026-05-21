@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { registerSellerUser } from "../../services/authService";
 
 const SellerRegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    phone: "",
+    shopname: "",
+    phonenumber: "",
     password: "",
     confirmPassword: "",
     termsAccepted: false,
@@ -21,20 +22,38 @@ const SellerRegisterForm = () => {
 
     setFormData((prev) => ({
       ...prev,
-      [name]:type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    if (formData.password !== formData.confirmPassword) {
+      return console.error("password and confirm-password is not same");
+    }
 
+
+    try {
+      const data = await registerSellerUser(formData);
+      if (data.status == 200) {
+        setFormData({
+          fullName: "",
+          email: "",
+          shopname: "",
+          phonenumber: "",
+          password: "",
+          confirmPassword: "",
+          termsAccepted: false,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div>
-
       <div className="mb-8">
         <h2 className="text-4xl font-bold text-gray-900">
           Create Seller Account
@@ -45,11 +64,7 @@ const SellerRegisterForm = () => {
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-5"
-      >
-
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Full Name <span className="text-orange-500">*</span>
@@ -84,13 +99,29 @@ const SellerRegisterForm = () => {
 
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
+            Shop Name <span className="text-orange-500">*</span>
+          </label>
+
+          <input
+            type="text"
+            name="shopname"
+            value={formData.shopname}
+            onChange={handleChange}
+            placeholder="Enter shopname"
+            className="w-full h-12 px-4 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
             Phone Number <span className="text-orange-500">*</span>
           </label>
 
           <input
             type="tel"
-            name="phone"
-            value={formData.phone}
+            name="phonenumber"
+            value={formData.phonenumber}
             onChange={handleChange}
             placeholder="Enter phone number"
             className="w-full h-12 px-4 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-orange-400"
@@ -105,9 +136,7 @@ const SellerRegisterForm = () => {
 
           <div className="relative">
             <input
-              type={
-                showPassword ? "text" : "password"
-              }
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formData.password}
               onChange={handleChange}
@@ -118,33 +147,22 @@ const SellerRegisterForm = () => {
 
             <button
               type="button"
-              onClick={() =>
-                setShowPassword(!showPassword)
-              }
+              onClick={() => setShowPassword(!showPassword)}
               className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-500"
             >
-              {showPassword ? (
-                <FaEyeSlash />
-              ) : (
-                <FaEye />
-              )}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
         </div>
 
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
-            Confirm Password{" "}
-            <span className="text-orange-500">*</span>
+            Confirm Password <span className="text-orange-500">*</span>
           </label>
 
           <div className="relative">
             <input
-              type={
-                showConfirmPassword
-                  ? "text"
-                  : "password"
-              }
+              type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
@@ -155,18 +173,10 @@ const SellerRegisterForm = () => {
 
             <button
               type="button"
-              onClick={() =>
-                setShowConfirmPassword(
-                  !showConfirmPassword
-                )
-              }
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-500"
             >
-              {showConfirmPassword ? (
-                <FaEyeSlash />
-              ) : (
-                <FaEye />
-              )}
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
         </div>
@@ -214,7 +224,6 @@ const SellerRegisterForm = () => {
             </Link>
           </p>
         </div>
-
       </form>
     </div>
   );

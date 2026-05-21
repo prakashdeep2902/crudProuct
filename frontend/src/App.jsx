@@ -7,20 +7,24 @@ import SellerRegister from "./pages/seller/SellerRegister";
 import SellerLogin from "./pages/seller/SellerLogin";
 import Product from "./pages/seller/Product";
 import Dashboard from "./pages/seller/Dashboard";
+import Msg from "./components/common/Msg";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user/register" element={<Register />} />
-        <Route path="/user/login" element={<Login />} />
-        <Route path="/seller/register" element={<SellerRegister />} />
-        <Route path="/seller/login" element={<SellerLogin />} />
-        <Route path="/seller/product" element={<Product />} />
-        <Route path="/seller/dashboard" element={<Dashboard/>}></Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Msg />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user/register" element={<Register />} />
+          <Route path="/user/login" element={<Login />} />
+          <Route path="/seller/register" element={<SellerRegister />} />
+          <Route path="/seller/login" element={<SellerLogin />} />
+          <Route path="/seller/product" element={<Product />} />
+          <Route path="/seller/dashboard" element={<Dashboard />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
