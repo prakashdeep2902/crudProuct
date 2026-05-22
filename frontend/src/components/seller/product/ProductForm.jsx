@@ -65,6 +65,27 @@ const ProductForm = () => {
       );
     }
   };
+
+  const handelCancel = () => {
+    setProductData({
+      productname: "",
+      category: "",
+      saleprice: "",
+      sku: "",
+      stock: "",
+      brand: "",
+      price: "",
+      description: "",
+      producttag: "",
+      status: "",
+    });
+    dispatch(
+      showMsg({
+        message: "cancel the product creation",
+        type: "error",
+      }),
+    );
+  };
   return (
     <div>
       <div className="grid grid-cols-12 gap-6">
@@ -88,7 +109,10 @@ const ProductForm = () => {
         </div>
       </div>
 
-      <ProductActions handelProductSave={handelProductSave} />
+      <ProductActions
+        handelProductSave={handelProductSave}
+        handelCancel={handelCancel}
+      />
     </div>
   );
 };

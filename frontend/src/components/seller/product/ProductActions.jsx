@@ -1,9 +1,12 @@
 import React from "react";
 
-const ProductActions = ({ handelProductSave }) => {
+const ProductActions = ({ handelProductSave, handelCancel }) => {
   return (
     <div className="flex justify-end gap-4 mt-6">
-      <button className="px-6 py-3 border rounded-xl font-semibold hover:bg-gray-100">
+      <button
+        className="px-6 py-3 border rounded-xl font-semibold hover:bg-gray-100"
+        onClick={handelCancel}
+      >
         Cancel
       </button>
 
