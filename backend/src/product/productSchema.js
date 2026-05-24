@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
     },
-    ProductImages: [String],
+
     description: {
       type: String,
     },
@@ -26,6 +26,16 @@ const productSchema = new mongoose.Schema(
     sku: {
       type: String,
     },
+    thumbnail: {
+      url: String,
+      public_id: String,
+    },
+    ProductImages: [
+      {
+        url: String,
+        public_id: String,
+      },
+    ],
     status: {
       type: String,
       enum: ["Active", "Out of Stock", "Draft"],

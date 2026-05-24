@@ -1,8 +1,9 @@
 import React from "react";
 import ProductInput from "./ProductInput";
 import ProductSelect from "./ProductSelect";
+import ProductThumbnail from "./ProductThumbnail";
 
-const ProductInformation = ({ handelChange, productData }) => {
+const ProductInformation = ({ handelChange, productData, setProductData }) => {
   return (
     <div className="bg-white p-6 rounded-2xl border">
       <h3 className="text-xl font-bold mb-6">Product Information</h3>
@@ -69,6 +70,12 @@ const ProductInformation = ({ handelChange, productData }) => {
           handelChange={handelChange}
         />
       </div>
+      <ProductThumbnail
+        label="Product Thumbnail"
+        name="productthumbnail"
+        setProductData={setProductData}
+        Value={productData.thumbnail}
+      />
     </div>
   );
 };

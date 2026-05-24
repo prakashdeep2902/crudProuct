@@ -54,8 +54,6 @@ const ProductImageUpload = () => {
     setImages(updatedImages);
   };
 
-  console.log("images:::===>", images);
-
   return (
     <div className="w-full">
       <div

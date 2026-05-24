@@ -21,11 +21,11 @@ const ProductForm = () => {
     description: "",
     producttag: "",
     status: "",
+    thumbnail: {},
   });
 
   const handelChange = (e) => {
     const { value, name } = e.target;
-
     setProductData((prev) => ({
       ...prev,
       [name]: value,
@@ -34,6 +34,7 @@ const ProductForm = () => {
 
   const handelProductSave = async (e) => {
     e.preventDefault();
+
     try {
       const res = await productCreate(productData);
       if (res.status == 200) {
@@ -48,6 +49,7 @@ const ProductForm = () => {
           description: "",
           producttag: "",
           status: "",
+          thumbnail: {},
         });
         dispatch(
           showMsg({
@@ -78,6 +80,7 @@ const ProductForm = () => {
       description: "",
       producttag: "",
       status: "",
+      thumbnail: {},
     });
     dispatch(
       showMsg({
@@ -86,12 +89,15 @@ const ProductForm = () => {
       }),
     );
   };
+
   return (
     <div>
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-8 space-y-6">
           <ProductInformation
             handelChange={handelChange}
+            productData={productData}
+            setProductData={setProductData}
             productData={productData}
           />
           <ProductDescription
