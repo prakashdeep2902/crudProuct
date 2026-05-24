@@ -10,9 +10,11 @@ const ProductStatus = ({ handelChange, Value }) => {
         onChange={handelChange}
         name="status"
       >
-        <option>Active</option>
-        <option>Draft</option>
-        <option>Out Of Stock</option>
+        <option defaultValue={"active"} value="active">
+          Active
+        </option>
+        <option value="draft">Draft</option>
+        <option value="out of stock">Out Of Stock</option>
       </select>
     </div>
   );

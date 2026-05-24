@@ -71,10 +71,10 @@ const ProductInformation = ({ handelChange, productData, setProductData }) => {
         />
       </div>
       <ProductThumbnail
-        label="Product Thumbnail"
-        name="productthumbnail"
+        label="Thumbnail"
+        name="thumbnail"
+        productData={productData}
         setProductData={setProductData}
-        Value={productData.thumbnail}
       />
     </div>
   );

@@ -34,7 +34,7 @@ const ProductForm = () => {
 
   const handelProductSave = async (e) => {
     e.preventDefault();
-
+    console.log("productData:::::===>", productData);
     try {
       const res = await productCreate(productData);
       if (res.status == 200) {
@@ -61,7 +61,7 @@ const ProductForm = () => {
     } catch (error) {
       dispatch(
         showMsg({
-          message: error,
+          message: "something error",
           type: "error",
         }),
       );

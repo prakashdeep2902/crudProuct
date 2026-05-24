@@ -22,6 +22,27 @@ export const loginSellerUser = async (data) => {
 };
 
 export const productCreate = async (data) => {
-  const response = await axios.post(`${API}/product/create`, data);
+  const formData = new FormData();
+
+  console.log("data:::===>", data);
+
+  formData.append("productname", data.productname);
+  formData.append("category", data.category);
+  formData.append("saleprice", data.saleprice);
+  formData.append("sku", data.sku);
+  formData.append("stock", data.stock);
+  formData.append("brand", data.brand);
+  formData.append("price", data.price);
+  formData.append("description", data.description);
+  formData.append("producttag", data.producttag);
+  formData.append("status", data.status);
+
+  formData.append("thumbnail", data.thumbnail);
+
+  const response = await axios.post(`${API}/product/create`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };

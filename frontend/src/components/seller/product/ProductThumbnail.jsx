@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { showMsg } from "../../../redux/msgSlice";
 
-const ProductThumbnail = ({ label, name, setProductData, Value }) => {
+const ProductThumbnail = ({ label, name, productData, setProductData }) => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const [thumbnailImage, SetThumbnailImage] = useState({});
@@ -12,12 +12,10 @@ const ProductThumbnail = ({ label, name, setProductData, Value }) => {
     inputRef.current.click();
   };
 
-  const HandelImageChange = (e) => {
+  const HandelImageChange = async (e) => {
     const files = Array.from(e.target.files);
-
     const file = files[0];
-
-    const validImage = [];
+    let validImage = [];
 
     if (file.size > 5 * 1024 * 1024) {
       dispatch(
@@ -42,10 +40,17 @@ const ProductThumbnail = ({ label, name, setProductData, Value }) => {
     }
 
     const PreviewImageUrl = URL.createObjectURL(file);
-    SetThumbnailImage({ preview: PreviewImageUrl, file });
+
+    validImage = {
+      preview: PreviewImageUrl,
+      file,
+    };
+
+    SetThumbnailImage(validImage);
+
     setProductData((prev) => ({
       ...prev,
-      thumbnail: thumbnailImage.file,
+      thumbnail: validImage.file,
     }));
   };
 
@@ -73,7 +78,6 @@ const ProductThumbnail = ({ label, name, setProductData, Value }) => {
           accept="image/png,image/jpeg,image/webp"
           ref={inputRef}
           name={name}
-          value={""}
           onChange={HandelImageChange}
         />
 

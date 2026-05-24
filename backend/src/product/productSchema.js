@@ -5,8 +5,6 @@ const productSchema = new mongoose.Schema(
     productname: {
       type: String,
       required: true,
-      lowercase: true,
-      trim: true,
     },
     category: {
       type: String,
@@ -28,7 +26,6 @@ const productSchema = new mongoose.Schema(
     },
     thumbnail: {
       url: String,
-      public_id: String,
     },
     ProductImages: [
       {
@@ -38,7 +35,6 @@ const productSchema = new mongoose.Schema(
     ],
     status: {
       type: String,
-      enum: ["Active", "Out of Stock", "Draft"],
     },
     stock: {
       type: String,
