@@ -26,12 +26,15 @@ export const CreatProduct = async (req, res) => {
       });
     }
 
-    const thumbnail = req.files.thumbnail[0];
+    const productImages = req.files.productImages;
 
-    // convert path for windows
+    console.log("productImages:::==>", productImages);
+
+    return;
+
+    const thumbnail = req.files.thumbnail[0];
     const localPath = path.resolve(thumbnail.path);
 
-    // check file exists
     if (!fs.existsSync(localPath)) {
       return res.status(400).json({
         success: false,
@@ -46,7 +49,6 @@ export const CreatProduct = async (req, res) => {
       overwrite: true,
     });
 
-    // delete local file
     fs.unlinkSync(localPath);
 
     const product = await Products.create({

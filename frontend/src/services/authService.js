@@ -22,10 +22,8 @@ export const loginSellerUser = async (data) => {
 };
 
 export const productCreate = async (data) => {
+  console.log(data);
   const formData = new FormData();
-
-  console.log("data:::===>", data);
-
   formData.append("productname", data.productname);
   formData.append("category", data.category);
   formData.append("saleprice", data.saleprice);
@@ -36,8 +34,11 @@ export const productCreate = async (data) => {
   formData.append("description", data.description);
   formData.append("producttag", data.producttag);
   formData.append("status", data.status);
-
   formData.append("thumbnail", data.thumbnail);
+  // Multiple images
+  data.ProductImages.forEach((image) => {
+    formData.append("productImages", image);
+  });
 
   const response = await axios.post(`${API}/product/create`, formData, {
     headers: {

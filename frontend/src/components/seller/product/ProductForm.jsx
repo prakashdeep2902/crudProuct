@@ -21,6 +21,7 @@ const ProductForm = () => {
     description: "",
     producttag: "",
     status: "",
+    ProductImages: [{}],
     thumbnail: {},
   });
 
@@ -34,7 +35,7 @@ const ProductForm = () => {
 
   const handelProductSave = async (e) => {
     e.preventDefault();
-    console.log("productData:::::===>", productData);
+
     try {
       const res = await productCreate(productData);
       if (res.status == 200) {
@@ -49,6 +50,7 @@ const ProductForm = () => {
           description: "",
           producttag: "",
           status: "",
+          ProductImages: [{}],
           thumbnail: {},
         });
         dispatch(
@@ -80,6 +82,7 @@ const ProductForm = () => {
       description: "",
       producttag: "",
       status: "",
+      ProductImages: [{}],
       thumbnail: {},
     });
     dispatch(
@@ -107,7 +110,10 @@ const ProductForm = () => {
         </div>
 
         <div className="col-span-4 space-y-6">
-          <ProductImageUpload />
+          <ProductImageUpload
+            setProductData={setProductData}
+            productData={productData}
+          />
           <ProductStatus
             handelChange={handelChange}
             Value={productData.status}

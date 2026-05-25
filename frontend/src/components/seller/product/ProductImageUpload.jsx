@@ -3,7 +3,7 @@ import { UploadCloud, X } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { showMsg } from "../../../redux/msgSlice";
 
-const ProductImageUpload = () => {
+const ProductImageUpload = ({ productData, setProductData }) => {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   const [images, setImages] = useState([]);
@@ -45,6 +45,7 @@ const ProductImageUpload = () => {
     });
 
     setImages((prev) => [...prev, ...validImages]);
+    setProductData((prev) => ({ ...prev, ProductImages: [...validImages] }));
   };
 
   const removeImage = (index) => {
